@@ -60,6 +60,18 @@ const Login = () => {
   const handleRegistration = async (type) => {
     const inputData = type === "signup" ? signupInput : loginInput;
     const action = type === "signup" ? registerUser : loginUser;
+    // Email validation: Must end with @gmail.com
+    const emailPattern = /^[^\s@]+@gmail\.com$/;
+    if (!emailPattern.test(inputData.email)) {
+        toast.error("Email must end with @gmail.com!");
+        return;
+    }
+
+    // Password length validation (minimum 6 characters)
+    if (inputData.password.length < 6) {
+      toast.error("Password must be at least 6 characters long!");
+      return;
+  }
     await action(inputData);
   };
 

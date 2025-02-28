@@ -105,6 +105,7 @@ export const stripeWebhook = async (req, res) => {
       if (session.amount_total) {
         purchase.amount = session.amount_total / 100;
       }
+      console.log(purchase, "Purchase");
       purchase.status = "completed";
 
       // Make all lectures visible by setting `isPreviewFree` to true
